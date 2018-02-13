@@ -1,0 +1,9 @@
+# this file tells git to ignore certain filepaths
+/.metadata/
+/.settings/
+/bin/
+/target/
+/test-output/
+.classpath
+node_modules/
+.tern-project
