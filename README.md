@@ -1,7 +1,13 @@
 # RevatureTestSuite
 ### Contributors
 
-* William (Angular is dumb)
+* William
 * Robin
 * Andrew
 * Joseph
+---------
+* Clayton
+* Tuan
+* Adriel
+* Stephen
+* Adam
