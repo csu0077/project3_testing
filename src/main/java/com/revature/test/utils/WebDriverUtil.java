@@ -15,9 +15,9 @@ public class WebDriverUtil {
 	
 	public static WebDriver getChromeDriver() {
 		if (chromeDriver == null) {
-			//doesnt work, for some reason i have to put it in \sts-3.9.1-RELEASE\src\main\resources
+			//doesnt work, for some reason i have to put driver in \sts-3.9.1-RELEASE\src\main\resources
 			//like the actual installation of sts
-			File f1 = new File("C:\\Users\\Su\\Desktop\\GitHub_Repos\\project3_testing\\src\\main\\resources\\chromedriver.exe");
+			File f1 = new File(".\\src\\main\\resources\\chromedriver.exe");
 			System.setProperty("webdriver.chrome.driver", f1.getAbsolutePath());
 			return new ChromeDriver();
 		}
