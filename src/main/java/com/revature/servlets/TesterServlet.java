@@ -40,22 +40,42 @@ public class TesterServlet extends HttpServlet {
 		System.out.println("creating suite for: "+which);
 		switch(which) {
 		case "all":
+			//doesnt work unless there's only 1 test in there
 			System.out.println("adding all classes");
 			classes.add(new XmlClass("com.revature.test.admin.testclasses.AdminSuite"));
-			classes.add(new XmlClass("com.revature.test.admin.testclasses.HomeTest"));
+			//classes.add(new XmlClass("com.revature.test.admin.testclasses.HomeTest"));
 			classes.add(new XmlClass("com.revature.test.admin.testclasses.ClientListTest"));
 			classes.add(new XmlClass("com.revature.test.admin.testclasses.BatchListTest"));
 			classes.add(new XmlClass("com.revature.test.admin.testclasses.AssociateListTest"));
 			classes.add(new XmlClass("com.revature.test.admin.testclasses.CreateUserTest"));
 			//classes.add(new XmlClass("com.revature.test.admin.testclasses.LoginTest"));
 			break;
-		case "VP":
-			System.out.println("adding VPGroupTester classes");
-			classes.add(new XmlClass("com.revature.tester.VPGroupTester"));
+		case "1":
+			System.out.println("Adding class 1");
+			classes.add(new XmlClass("com.revature.test.admin.testclasses.ClientListTest"));
 			break;
-		case "Trainer":
-			System.out.println("adding TrainerGroupTester classes");
-			classes.add(new XmlClass("com.revature.tester.TrainerGroupTester"));
+		case "2":
+			System.out.println("Adding class 2");
+			classes.add(new XmlClass("com.revature.test.admin.testclasses.BatchListTest"));
+			break;
+		case "3":
+			System.out.println("Adding class 3");
+			classes.add(new XmlClass("com.revature.test.admin.testclasses.HomeTest"));
+			break;
+		case "4":
+			System.out.println("Adding class 4");
+			classes.add(new XmlClass("com.revature.test.admin.testclasses.AssociateListTest"));
+			break;
+		case "5":
+			System.out.println("Adding class 5");
+			classes.add(new XmlClass("com.revature.test.admin.testclasses.LoginTest"));
+			break;
+		case "6":
+			System.out.println("Adding class 6");
+			classes.add(new XmlClass("com.revature.test.admin.testclasses.CreateUserTest"));
+			break;
+		default:
+			System.out.println("There is no test for this Switch Statement:" + which);
 			break;
 		}
 		test.setXmlClasses(classes);

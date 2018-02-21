@@ -1,21 +1,26 @@
 package com.revature.test.admin.testclasses;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import com.revature.test.utils.WebDriverUtil;
+import com.revature.test.admin.pom.Logout;
 import com.revature.test.utils.LoginUtil;
 import com.revature.test.utils.TestConfig;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.Keys;
 
 //import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 //@CucumberOptions(features="src/test/resources/AdminFeatureFiles")
-public class AdminSuite extends AbstractTestNGCucumberTests{
+public class AdminSuite{
 
-	public static WebDriver wd = WebDriverUtil.getChromeDriver();
-	private String baseURL = TestConfig.getBaseURL();
-	
+	public static WebDriver wd = WebDriverUtil.getChromeDriver(); 
+	private String baseURL = TestConfig.getBaseURL(); //gets the website URL
+	public static Alert alert = null; //creates object to interact with alerts in order to cancel pop ups
+	public static Actions action = null;
 	@BeforeSuite
 	public void beforeSuite() {
 		System.out.println("================== TRACKFORCE TESTS ==================");
@@ -24,6 +29,8 @@ public class AdminSuite extends AbstractTestNGCucumberTests{
 		try {
 			wd.get(baseURL);
 			LoginUtil.loginAsAdmin(wd);
+			alert = wd.switchTo().alert(); //initialize
+			action = new Actions(wd);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -32,8 +39,8 @@ public class AdminSuite extends AbstractTestNGCucumberTests{
 	@AfterSuite
 	public void afterSuite() {
 		System.out.println("Logging out");
-		//Logout.logout(wd);
-		wd.quit();
+		Logout.logout(wd);
+		//wd.quit();
 
 	}
 }

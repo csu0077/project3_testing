@@ -1,6 +1,6 @@
 package com.revature.test.admin.testclasses;
 
-import static org.testng.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.testng.Assert.fail;
 
 import org.testng.annotations.AfterTest;
@@ -11,9 +11,11 @@ import com.revature.test.admin.pom.Login;
 
 public class LoginTest extends AdminSuite {
 
-	@BeforeTest
+	//@BeforeTest
+	@Test(priority = 0)
 	public void beforeTest() {
-		System.out.println("Testing if login was successful so we are on Home page now");
+		System.out.println("============ Initializing Login Tests ===============");
+		System.out.println("");
 	}
 
 	@Test(priority = 1)

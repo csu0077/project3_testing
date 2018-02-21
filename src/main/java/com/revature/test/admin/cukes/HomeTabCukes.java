@@ -1,10 +1,13 @@
 package com.revature.test.admin.cukes;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.revature.test.admin.pom.AssociateListTab;
 import com.revature.test.admin.pom.HomeTab;
 import com.revature.test.admin.testclasses.AdminSuite;
+import com.revature.test.utils.TestConfig;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -12,15 +15,13 @@ import cucumber.api.java.en.When;
 
 public class HomeTabCukes extends AdminSuite {
 	
-
 	static WebElement e = null;
 
 	@Given("^I am on the Home Page$")
 	public static boolean i_am_on_the_Home_Page(WebDriver d) throws Throwable {
 
 		try {
-			Thread.sleep(2000);
-			// Click on the Pie Chart
+			Thread.sleep(1500);
 			HomeTab.clickHomeTab(d).click();
 			return true;
 
@@ -31,13 +32,33 @@ public class HomeTabCukes extends AdminSuite {
 
 	}
 
+	@Given("^Home Tab loads$")
+	public static boolean home_tab_loads(WebDriver d) {
+		try {
+			Thread.sleep(500);
+			if (HomeTab.getCurrentURL(d).equals(TestConfig.getBaseURL()) || 
+					HomeTab.getCurrentURL(d).equals(TestConfig.getBaseURL() + "/") || 
+					HomeTab.getCurrentURL(d).equals(TestConfig.getBaseURL() + "/root")) {
+				return true;
+			}
+			System.out.println("Current URL does not equal the base URL, or does not end with / or /root");
+			return false;
+		} catch (Throwable e) {
+			System.out.println("Failed to get current URL");
+			return false;
+		}
+	}
+	
 	@When("^I click on the telephone link$")
 	public static boolean i_click_on_the_telephone_link(WebDriver d) throws Throwable {
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			HomeTab.phone(wd).click();
+			
+			Thread.sleep(1000);
+			//Exits alert pop up asking to open in app
+			action.sendKeys(Keys.ESCAPE).perform();
 			return true;
-
 		} catch (Throwable e) {
 			System.out.println(("Failed click on the phone link"));
 			return false;
@@ -54,11 +75,9 @@ public class HomeTabCukes extends AdminSuite {
 	public static boolean i_click_on_the_email_link(WebDriver d) throws Throwable {
 
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			HomeTab.email(wd).click();
-			Thread.sleep(7000);
 			return true;
-
 		} catch (Throwable e) {
 			System.out.println(("Failed click on the email link"));
 			return false;
@@ -75,9 +94,8 @@ public class HomeTabCukes extends AdminSuite {
 	public static boolean i_click_on_the_website_link(WebDriver d) throws Throwable {
 		
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			HomeTab.website(wd).click();
-			Thread.sleep(7000);
 			return true;
 		} catch (Throwable e) {
 			System.out.println(("Failed click on the website link"));
